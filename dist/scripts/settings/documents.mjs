@@ -1,8 +1,8 @@
 /*
  * @Author: StartZyp
  * @Date: 2024-10-14 12:46:19
- * @LastEditors: StartZyp
- * @LastEditTime: 2024-10-14 13:01:00
+ * @LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+ * @LastEditTime: 2024-10-15 11:23:34
  * @FilePath: /gene_group/dist/scripts/settings/documents.mjs
  * 
  * Copyright (c) 2024 by StartZyp/Reddrip, All Rights Reserved. 
@@ -10,9 +10,13 @@
 export const Documents = [
     {
         title: "Introduction",
-        href: "/introduction",
+        href: "/plugin_doc",
         heading: "宿命重载插件文档",
         items: [
+            {
+                title: "[服务器中间件]Gene_ServerMiddleSystem",
+                href: "/Gene_ServerMiddleSystem",
+            },
             {
                 title: "[Dp附属]Gene_Dplus",
                 href: "/installation",

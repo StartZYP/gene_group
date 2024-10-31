@@ -11,77 +11,77 @@ import { Paths } from "@/lib/pageroutes";
 
 export const Documents: Paths[] = [
     {
-      title: "Introduction",
-      href: "/introduction",
+      title: "PluginDoc",
+      href: "/plugin_doc",
       heading: "宿命重载插件文档",
       items: [
           {
-              title: "[Dp附属]Gene_Dplus",
-              href: "/installation",
-          },
-          {
-              title: "[宝箱插件]Gene_TreasureBox",
-              href: "/setup",
-          },
-          {
-              title: "[chemdah附属]Gene_TaskView",
-              href: "/changelog",
-          },
-          {
-              title: "[电梯插件]Gene_Elevator",
-              href: "/changelog",
-          },
-          {
-              title: "[电梯插件]Gene_Elevator",
-              href: "/changelog",
-          },
-          {
-              title: "[生涯等级]Gene_CareerLevel",
-              href: "/changelog",
+              title: "[数据同步]Gene_PlayerDataCache",
+              href: "/Gene_PlayerDataCache",
           },
           {
               title: "[角色系统]Gene_Roles",
-              href: "/changelog",
-          },
-          {
-              title: "[采集模块]Gene_Roles",
-              href: "/changelog",
-          },
-          {
-              title: "[背包模块]Gene_Inventory",
-              href: "/changelog",
-          },
-          {
-              title: "[强化模块]Gene_Strengthen",
-              href: "/changelog",
-          },
-          {
-              title: "[多经济模块]Gene_Inventory",
-              href: "/changelog",
+              href: "/Gene_Roles",
           },
           {
               title: "[组队模块]Gene_BungeeTeam",
-              href: "/changelog",
+              href: "/Gene_BungeeTeam",
+          },
+          {
+              title: "[跨服模块]Gene_ServerMiddleSystem",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[chemdah附属]Gene_TaskView",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[电梯插件]Gene_Elevator",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[电梯插件]Gene_Elevator",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[生涯等级]Gene_CareerLevel",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[采集模块]Gene_Roles",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[背包模块]Gene_Inventory",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[强化模块]Gene_Strengthen",
+              href: "/Gene_ServerMiddleSystem",
+          },
+          {
+              title: "[多经济模块]Gene_Inventory",
+              href: "/Gene_ServerMiddleSystem",
           },
           {
               title: "[跨服系统]Gene_ServerChange",
-              href: "/changelog",
+              href: "/Gene_ServerMiddleSystem",
           },
           {
               title: "[物品管理模块]Gene_ItemPlant",
-              href: "/changelog",
+              href: "/Gene_ServerMiddleSystem",
           },
           {
               title: "[图纸系统]Gene_BlueprintCraft",
-              href: "/changelog",
+              href: "/Gene_ServerMiddleSystem",
           },
           {
               title: "[护盾模块]Gene_Shield",
-              href: "/changelog",
+              href: "/Gene_ServerMiddleSystem",
           },
           {
               title: "[主手模块]Gene_MainHand",
-              href: "/changelog",
+              href: "/Gene_ServerMiddleSystem",
           },
       ],
     },

@@ -9,7 +9,7 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 
 <Step>
 <StepItem title="数据首包">
----
+
 首包: Gene_TeamView
 
 界面文件名: teamViewScreen
@@ -20,7 +20,11 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 
 数据包1: team_info
 
-队伍成员数据:
+---
+
+变量名: GeneTeamView_TeamInfo
+
+返回队伍成员数据:
 
 GeneTeamView_索引_Name
 
@@ -94,6 +98,22 @@ GeneTeamView_Applicant_索引_TeamRole
 
 数据包2: 队伍UUID
 
+---
+
+变量名: GeneTeamView_Apply
+
+申请入队后队员看到的数据: (这个可以做弹出提示有人申请加入队伍)
+
+GeneTeamView_Apply_Name (申请人)
+
+GeneTeamView_Apply_CurrentServer (申请人所在服务器)
+
+GeneTeamView_Apply_CareerLevel (申请人生涯等级)
+
+GeneTeamView_Apply_Role (申请人目前使用的角色)
+
+
+
 </StepItem>
 
 <StepItem title="同意加入队伍数据包">
@@ -135,6 +155,23 @@ GeneTeamView_Applicant_索引_TeamRole
 数据包2: 被邀请玩家
 
 数据包3: 队伍UUID
+
+---
+
+变量名: GeneTeamView_TeamInvite
+
+被邀请者收到数据:
+
+GeneTeamView_Invite_CurrentServer (邀请你的人所在服务器)
+
+GeneTeamView_Invite_CareerLevel (邀请你的人生涯等级)
+
+GeneTeamView_Invite_Name (邀请你的玩家名)
+
+GeneTeamView_Invite_Role  (邀请你的人当前用的角色)
+
+GeneTeamView_Invite_TeamUuid (队伍uuid)
+
 
 </StepItem>
 </Step>

@@ -32,8 +32,8 @@ export const Documents: Paths[] = [
               href: "/Gene_ServerMiddleSystem",
           },
           {
-              title: "[chemdah附属]Gene_TaskView",
-              href: "/Gene_ServerMiddleSystem",
+              title: "[组队副本桥]DungeonBridgeTeam",
+              href: "/DungeonBridgeTeam",
           },
           {
               title: "[电梯插件]Gene_Elevator",

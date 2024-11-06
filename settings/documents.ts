@@ -33,7 +33,7 @@ export const Documents: Paths[] = [
           },
           {
               title: "[组队副本桥]DungeonBridgeTeam",
-              href: "/DungeonBridgeTeam",
+              href: "/Gene_DungeonBridgeTeam",
           },
           {
               title: "[电梯插件]Gene_Elevator",

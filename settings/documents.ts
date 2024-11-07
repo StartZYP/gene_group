@@ -32,7 +32,7 @@ export const Documents: Paths[] = [
               href: "/Gene_ServerMiddleSystem",
           },
           {
-              title: "[组队副本桥]DungeonBridgeTeam",
+              title: "[组队副本桥]Gene_DungeonBridgeTeam",
               href: "/Gene_DungeonBridgeTeam",
           },
           {

@@ -37,7 +37,7 @@ export const Documents: Paths[] = [
           },
           {
               title: "[电梯插件]Gene_Elevator",
-              href: "/Gene_ServerMiddleSystem",
+              href: "/Gene_DungeonBridgeTeam",
           },
           {
               title: "[电梯插件]Gene_Elevator",

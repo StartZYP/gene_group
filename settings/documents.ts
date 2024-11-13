@@ -36,8 +36,16 @@ export const Documents: Paths[] = [
               href: "/Gene_DungeonBridgeTeam",
           },
           {
-              title: "[电梯插件]Gene_Elevator",
-              href: "/Gene_ServerMiddleSystem",
+            title: "[背包模块]Gene_Inventory",
+            href: "/Gene_Inventory",
+          },
+          {
+              title: "[副本附属]Gene_Dplus",
+              href: "/Gene_Dplus",
+          },
+          {
+            title: "[物品管理模块]Gene_ItemPlant",
+            href: "/Gene_ItemPlant",
           },
           {
               title: "[电梯插件]Gene_Elevator",
@@ -52,10 +60,6 @@ export const Documents: Paths[] = [
               href: "/Gene_ServerMiddleSystem",
           },
           {
-              title: "[背包模块]Gene_Inventory",
-              href: "/Gene_ServerMiddleSystem",
-          },
-          {
               title: "[强化模块]Gene_Strengthen",
               href: "/Gene_ServerMiddleSystem",
           },
@@ -65,10 +69,6 @@ export const Documents: Paths[] = [
           },
           {
               title: "[跨服系统]Gene_ServerChange",
-              href: "/Gene_ServerMiddleSystem",
-          },
-          {
-              title: "[物品管理模块]Gene_ItemPlant",
               href: "/Gene_ServerMiddleSystem",
           },
           {

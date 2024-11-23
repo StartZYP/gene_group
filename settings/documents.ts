@@ -48,24 +48,20 @@ export const Documents: Paths[] = [
             href: "/Gene_ItemPlant",
           },
           {
-              title: "[电梯插件]Gene_Elevator",
-              href: "/Gene_ServerMiddleSystem",
+              title: "[宝箱模块]Gene_TreasureBox",
+              href: "/Gene_TreasureBox",
           },
           {
-              title: "[生涯等级]Gene_CareerLevel",
-              href: "/Gene_ServerMiddleSystem",
+              title: "[角色模块]Gene_Roles",
+              href: "/Gene_Roles",
           },
           {
-              title: "[采集模块]Gene_Roles",
-              href: "/Gene_ServerMiddleSystem",
+              title: "[背包保持模块]Gene_KeepInventory",
+              href: "/Gene_KeepInventory",
           },
           {
-              title: "[强化模块]Gene_Strengthen",
-              href: "/Gene_ServerMiddleSystem",
-          },
-          {
-              title: "[多经济模块]Gene_Inventory",
-              href: "/Gene_ServerMiddleSystem",
+              title: "[扩展背包模块]Gene_Inventory",
+              href: "/Gene_Inventory",
           },
           {
               title: "[跨服系统]Gene_ServerChange",

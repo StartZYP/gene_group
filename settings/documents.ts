@@ -64,8 +64,8 @@ export const Documents: Paths[] = [
               href: "/Gene_Inventory",
           },
           {
-              title: "[跨服系统]Gene_ServerChange",
-              href: "/Gene_ServerMiddleSystem",
+              title: "[黑市商店]GeneBlackMarket",
+              href: "/GeneBlackMarket",
           },
           {
               title: "[图纸系统]Gene_BlueprintCraft",

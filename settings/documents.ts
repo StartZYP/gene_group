@@ -67,18 +67,6 @@ export const Documents: Paths[] = [
               title: "[黑市商店]GeneBlackMarket",
               href: "/GeneBlackMarket",
           },
-          {
-              title: "[图纸系统]Gene_BlueprintCraft",
-              href: "/Gene_ServerMiddleSystem",
-          },
-          {
-              title: "[护盾模块]Gene_Shield",
-              href: "/Gene_ServerMiddleSystem",
-          },
-          {
-              title: "[主手模块]Gene_MainHand",
-              href: "/Gene_ServerMiddleSystem",
-          },
       ],
     },
     {

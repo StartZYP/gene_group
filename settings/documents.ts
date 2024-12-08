@@ -64,8 +64,8 @@ export const Documents: Paths[] = [
               href: "/Gene_Inventory",
           },
           {
-              title: "[黑市商店]GeneBlackMarket",
-              href: "/GeneBlackMarket",
+              title: "[黑市商店]Gene_BlackMarket",
+              href: "/Gene_BlackMarket",
           },
       ],
     },

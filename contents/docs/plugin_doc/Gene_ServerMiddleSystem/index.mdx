@@ -4,6 +4,64 @@ description: Gene_ServerMiddleSystem 插件文档
 keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 ---
 
+
+## 发包文档
+
+
+<Step>
+<StepItem title="数据首包">
+
+首包: Gene_ServerMiddleSystem
+
+界面文件名: ServerMiddleSystemViewScreen
+
+</StepItem>
+
+<StepItem title="获取频道信息">
+
+数据包1: server_data
+
+数据包2: <获取类型> normal | dungeon | all (all 和 dungeon 一般不传 因为副本服不让进)
+
+---
+
+变量名: Gene_ServerMiddleSystemInfoMap
+
+收到频道数据:
+
+GeneMiddleSystem_索引_KeyName
+
+GeneMiddleSystem_索引_CurrentPlayer
+
+GeneMiddleSystem_索引_MaxPlayer
+
+GeneMiddleSystem_索引_Status
+
+
+</StepItem>
+
+<StepItem title="随机进服发包">
+
+数据包1: fc
+
+
+</StepItem>
+
+
+<StepItem title="选择性进服">
+
+数据包1: enter
+
+数据包2: <服务器KeyName>
+
+
+</StepItem>
+
+
+</Step>
+
+
+
 ## 插件工作日志
 
 | 提交时间                              | 提交内容                                                                          |

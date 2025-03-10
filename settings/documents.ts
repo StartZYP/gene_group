@@ -44,6 +44,10 @@ export const Documents: Paths[] = [
               href: "/Gene_Dplus",
           },
           {
+            title: "[护盾模块]Gene_Shield",
+            href: "/Gene_Shield",
+          },
+          {
             title: "[物品管理模块]Gene_ItemPlant",
             href: "/Gene_ItemPlant",
           },

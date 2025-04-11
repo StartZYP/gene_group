@@ -1,0 +1,111 @@
+---
+title: Gene_BlueprintCraft
+description: Gene_BlueprintCraft 插件文档
+keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
+---
+
+## 发包文档
+
+
+<Step>
+<StepItem title="命令">
+
+打开锻造命令: gbc open [玩家]
+
+重载命令: gbc reload
+
+</StepItem>
+
+<StepItem title="图纸说明">
+
+图纸放置槽位名称: GeneBlueprintInputSlot
+
+图纸物品NBTKey: BlueprintKey
+
+图纸需求槽位: GeneBlueprintReqSlot_0到3 四个槽位
+
+</StepItem>
+
+<StepItem title="请求槽位回包">
+
+请求槽位: GeneBlueprintInputSlot
+
+收包的数据包内容： 
+
+GeneBlueprintCraft_MaxItem 总需求物品数
+
+GeneBlueprintCraft_数字_ReqSlotMaxNum 当前物品需要数量
+
+GeneBlueprintCraft_数字_ReqSlotNum  当前物品已有数量
+
+收包id:
+
+Gene_BlueprintCraft
+
+处理id
+
+Gene_BlueprintCraft_ReqSlot_Map
+
+</StepItem>
+
+
+<StepItem title="发包">
+
+首包: Gene_BlueprintCraft
+
+合成2包: craft
+
+不返回包
+
+打开2包: open
+
+打开界面用的返回数据包如下
+
+正在进行的合成
+
+GeneBlueprintCraft_Size 总图纸合成队列总数
+
+GeneBlueprintCraft_数字_UUID 唯一uuid合成队列
+
+GeneBlueprintCraft_数字_Time 相差时间
+
+GeneBlueprintCraft_数字_StartTime 开始时间
+
+GeneBlueprintCraft_数字_EndTime 结束时间
+
+GeneBlueprintCraft_数字_IsFinish 是否完成
+
+GeneBlueprintCraft_数字_KeyName  合成名称
+
+收包id
+
+Gene_BlueprintCraft
+
+处理名
+
+Gene_BlueprintCraft_Map
+
+
+</StepItem>
+
+</Step>
+
+
+## 插件工作日志
+
+| 提交时间                              | 提交内容                                                                          |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-04-10 00:35:33 +0800** | [feat]更新为ax的api |
+| **2024-07-18 18:17:45 +0800** | 新增开始于结束时间发包 |
+| **2024-07-14 02:21:51 +0800** | 新增开始于结束时间发包 |
+| **2024-07-14 02:18:11 +0800** | 更新下发槽位变量 |
+| **2024-07-12 17:19:29 +0800** | 更新下发变量 |
+| **2024-07-10 14:29:08 +0800** | 更新构建上传至maven,更新版本 |
+| **2024-07-10 11:47:38 +0800** | 更新构建上传至maven |
+| **2024-07-04 14:42:52 +0800** | 更新图纸代码 |
+| **2024-06-26 16:51:38 +0800** | init |
+| **2024-06-26 16:51:06 +0800** | 更新图纸 |
+| **2024-06-23 18:09:32 +0800** | 更新图纸 |
+| **2024-05-13 15:44:26 +0800** | Initial Commit |
+---
+**插件工作日志**

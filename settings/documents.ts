@@ -56,8 +56,8 @@ export const Documents: Paths[] = [
               href: "/Gene_TreasureBox",
           },
           {
-              title: "[角色模块]Gene_Roles",
-              href: "/Gene_Roles",
+              title: "[图纸合成]Gene_BlueprintCraft",
+              href: "/Gene_BlueprintCraft",
           },
           {
               title: "[背包保持模块]Gene_KeepInventory",

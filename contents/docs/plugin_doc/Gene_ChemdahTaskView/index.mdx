@@ -1,0 +1,140 @@
+---
+title: Gene_ChemdahTaskView
+description: Gene_ChemdahTaskView 插件文档
+keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
+---
+
+# Gene_ChemdahTaskView 插件文档
+
+## 命令文档
+
+### 命令说明
+
+主命令: GeneTaskView 或 gtv
+
+权限节点: GeneTaskView.command
+
+子命令:
+1. 主命令
+   - 功能: 显示命令帮助信息
+   - 使用示例: `/gtv` 或 `/GeneTaskView`
+
+2. reload
+   - 功能: 重载插件配置
+   - 使用示例: `/gtv reload`
+   - 权限: 需要控制台或管理员权限
+
+3. open [玩家]
+   - 功能: 为指定玩家打开任务查看界面
+   - 参数说明:
+     - user: 目标玩家名称
+   - 使用示例: `/gtv open <玩家名>`
+
+## 发包文档
+
+### 任务查看界面
+
+#### 服务端收包
+
+界面名称: Gene_Chemdah_TaskView
+
+收包说明:
+
+1. 单参数交互:
+   - close: 关闭对话会话
+   - track: 获取任务追踪信息
+
+2. 双参数交互:
+   - open [group]: 打开任务组列表
+   - big_task [taskId]: 获取大任务信息
+
+3. 三参数交互:
+   - task [group] [taskId]: 获取任务详细信息
+   - add_track [group] [taskId]: 添加任务追踪
+   - remove_track [group] [taskId]: 移除任务追踪
+
+#### 界面收包
+
+界面名称: Gene_Chemdah_TaskView
+
+收包说明:
+
+1. GeneChemQuest_TaskTrack (任务追踪信息)
+   - GeneTaskTrackChem_Number: 追踪任务数量
+   - GeneTaskTrackChem_[index]_Text: 任务追踪文本
+   - GeneTaskTrackChem_[index]_Title: 任务标题
+   - GeneTaskTrackChem_[index]_Type: 任务类型
+
+2. GeneTaskView_TaskList (任务组列表)
+   - BigChemQuest_TitleNumber: 任务组数量
+   - BigChemQuest_[index]_Title: 任务组标题
+   - BigChemQuest_[index]_Id: 任务组ID
+
+3. GeneBigChemQuest_Task (大任务信息)
+   - BigChemQuest_Description: 任务描述
+   - BigChemQuest_Title: 任务标题
+   - BigChemQuest_Task_Count: 子任务数量
+   - BigChemQuest_Task_[index]_Id: 子任务ID
+   - BigChemQuest_Task_[index]_Name: 子任务名称
+   - BigChemQuest_Task_[index]_isCompleted: 子任务完成状态
+   - BigChemQuest_SlotNumber: 物品槽位数量
+   - GeneTask_Slot_[index]: 物品槽位内容
+
+4. GeneChemQuest_Task (任务详细信息)
+   - ChemQuest_QuesInfo_Id: 任务ID
+   - ChemQuest_QuesInfo_Name: 任务名称
+   - ChemQuest_QuesInfo_isCompleted: 任务完成状态
+   - ChemQuest_QuesInfo_isTrack: 任务追踪状态
+   - ChemQuest_QuesInfo_Description: 任务描述
+   - ChemQuest_QuesInfo_MiniTitle: 任务小标题
+   - ChemQuest_QuesInfo_SlotNumber: 物品槽位数量
+   - GeneTask_Slot_[index]: 物品槽位内容
+
+### 对话界面
+
+#### 服务端收包
+
+界面名称: Gene_Chemdah_TalkView
+
+收包说明:
+
+1. 双参数交互:
+   - replay [rid]: 选择对话回复
+     - rid: 回复选项ID
+
+#### 界面收包
+
+界面名称: Gene_Chemdah_TalkView
+
+收包说明:
+
+1. data (对话信息)
+   - talk_title: 对话标题
+   - talk_message_number: NPC消息数量
+   - talk_message_[index]: NPC消息内容
+   - talk_reply_[index]_rid: 回复选项ID
+   - talk_reply_[index]_message: 回复选项内容
+
+## 插件工作日志
+
+| 提交时间                              | 提交内容                                                                          |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-04-29 00:28:34 +0800** | 更换ax引擎移除dp引擎 |
+| **2024-08-01 20:01:07 +0800** | 更新追踪 |
+| **2024-07-22 09:50:14 +0800** | 更新工具仓库 |
+| **2024-07-22 09:37:37 +0800** | 关闭daemon |
+| **2024-07-22 01:17:33 +0800** | 改为国内的源 |
+| **2024-07-22 01:13:03 +0800** | 改为国内的源 |
+| **2024-07-22 01:08:15 +0800** | 改为国内的源 |
+| **2024-07-22 00:59:27 +0800** | 修改gradle和maven仓库 |
+| **2024-07-22 00:41:54 +0800** | 更新版本号 |
+| **2024-07-22 00:41:18 +0800** | 更新taboolib |
+| **2024-07-22 00:30:02 +0800** | 更新小任务数量 |
+| **2024-07-22 00:18:59 +0800** | 更新taskinfo包 |
+| **2024-07-21 23:39:11 +0800** | 更新发包 |
+| **2024-07-19 14:26:12 +0800** | 更新版本号 |
+| **2024-04-17 10:33:07 +0800** | 新增任务详情 |
+| **2024-03-22 15:48:27 +0800** | 初始化迁移提交 |
+| **2024-03-22 14:56:09 +0800** | Initial Commit |
+---
+**插件工作日志**

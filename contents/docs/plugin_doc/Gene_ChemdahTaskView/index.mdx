@@ -45,13 +45,13 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
    - track: 获取任务追踪信息
 
 2. 双参数交互:
-   - open [group]: 打开任务组列表
+   - open [type]: 打开任务组列表
    - big_task [taskId]: 获取大任务信息
 
 3. 三参数交互:
-   - task [group] [taskId]: 获取任务详细信息
-   - add_track [group] [taskId]: 添加任务追踪
-   - remove_track [group] [taskId]: 移除任务追踪
+   - task [type] [taskId]: 获取任务详细信息
+   - add_track [type] [taskId]: 添加任务追踪
+   - remove_track [type] [taskId]: 移除任务追踪
 
 #### 界面收包
 
@@ -59,18 +59,12 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 
 收包说明:
 
-1. GeneChemQuest_TaskTrack (任务追踪信息)
-   - GeneTaskTrackChem_Number: 追踪任务数量
-   - GeneTaskTrackChem_[index]_Text: 任务追踪文本
-   - GeneTaskTrackChem_[index]_Title: 任务标题
-   - GeneTaskTrackChem_[index]_Type: 任务类型
-
-2. GeneTaskView_TaskList (任务组列表)
+1. GeneTaskView_TaskList (任务组列表)
    - BigChemQuest_TitleNumber: 任务组数量
    - BigChemQuest_[index]_Title: 任务组标题
    - BigChemQuest_[index]_Id: 任务组ID
 
-3. GeneBigChemQuest_Task (大任务信息)
+2. GeneBigChemQuest_Task (大任务信息)
    - BigChemQuest_Description: 任务描述
    - BigChemQuest_Title: 任务标题
    - BigChemQuest_Task_Count: 子任务数量
@@ -80,7 +74,7 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
    - BigChemQuest_SlotNumber: 物品槽位数量
    - GeneTask_Slot_[index]: 物品槽位内容
 
-4. GeneChemQuest_Task (任务详细信息)
+3. GeneChemQuest_Task (任务详细信息)
    - ChemQuest_QuesInfo_Id: 任务ID
    - ChemQuest_QuesInfo_Name: 任务名称
    - ChemQuest_QuesInfo_isCompleted: 任务完成状态
@@ -89,6 +83,18 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
    - ChemQuest_QuesInfo_MiniTitle: 任务小标题
    - ChemQuest_QuesInfo_SlotNumber: 物品槽位数量
    - GeneTask_Slot_[index]: 物品槽位内容
+
+
+界面名称: Gene_Chemdah_TaskTrackView
+
+收包说明:
+
+1. GeneChemQuest_TaskTrack (获取任务追踪信息)
+   - GeneTaskTrackChem_Number: 追踪任务数量
+   - GeneTaskTrackChem_[index]_Text: 任务追踪文本
+   - GeneTaskTrackChem_[index]_Title: 任务标题
+   - GeneTaskTrackChem_[index]_Type: 任务类型
+
 
 ### 对话界面
 
@@ -104,7 +110,7 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 
 #### 界面收包
 
-界面名称: Gene_Chemdah_TalkView
+界面名称: Gene_Chemdah_TaskTrackView
 
 收包说明:
 

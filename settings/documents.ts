@@ -79,6 +79,10 @@ export const Documents: Paths[] = [
               title: "[黑市商店]Gene_BlackMarket",
               href: "/Gene_BlackMarket",
           },
+          {
+            title: "[Kether脚本扩展]Gene_Kether",
+            href: "/Gene_Kether",
+          },
       ],
     },
     {

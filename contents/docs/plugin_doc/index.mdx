@@ -1,83 +1,92 @@
 ---
-title: Introduction
-description: This section provides an overview of how to get started with the Documents, Next.js Document Starter Kit.
-keywords: ["introduction", "guide", "nextjs", "documents"]
+title: Gene插件系列文档
+description: Gene插件系列是一套功能强大的Minecraft服务器插件集合，为服务器提供全面的功能支持。
+keywords: ["gene", "插件", "minecraft", "服务器"]
 ---
 
-![Banner](/images/banner.png "Documents")
+![Banner](/images/banner.png "Gene插件系列")
 
-## Documents
+## Gene插件系列
 
-Welcome to **Documents**, a powerful and flexible Next.js documentation starter kit designed to simplify the process of creating high-quality, comprehensive 
-product documentation, technical manuals, and business guides. Built with **React**, **Tailwind CSS**, and **TypeScript**, this starter kit provides the 
-foundation to build your project documentation and knowledge base.
+欢迎使用 **Gene插件系列**，这是一套专为Minecraft服务器设计的强大插件集合。这些插件采用现代化的开发技术构建，为服务器管理员提供全面的功能支持，帮助您轻松管理和扩展服务器功能。
 
-Documents was crafted to streamline the creation, management and showcasing of documentation, allowing developers and teams to focus on the content rather 
-than building the underlying structure. This documentation aims to help you get up and running with the kit, exploring the various features and providing 
-insights into how to structure and present your content effectively.
+Gene插件系列旨在简化服务器管理流程，让管理员能够专注于游戏体验的优化，而不是繁琐的配置工作。本文档将帮助您了解各个插件的功能和使用方法。
 
 <CardGrid>
   <Card
-    subtitle="Instructions"
-    title="Installation"
-    description="Get started with Documents using our quick start installation guide to get your project started."
-    href="/docs/introduction/installation"
+    subtitle="基础功能"
+    title="Gene_ServerMiddleSystem"
+    description="服务器核心中间件系统，提供基础功能支持。"
+    href="/docs/plugin_doc/Gene_ServerMiddleSystem"
   />
   <Card
-    subtitle="Setup"
-    title="Site Settings"
-    description="Setting up your Documents projects layout, links and search engine optimisation."
-    href="/docs/introduction/setup"
+    subtitle="安全防护"
+    title="Gene_Shield"
+    description="服务器安全防护系统，保护服务器免受攻击。"
+    href="/docs/plugin_doc/Gene_Shield"
   />
   <Card
-    subtitle="Support"
-    title="Rubix Studios"
-    description="Australia's leading branding, marketing and web development company."
-    href="https://www.rubixstudios.com.au/"
-    external={true}
+    subtitle="经济系统"
+    title="Gene_Economy"
+    description="完整的服务器经济系统，支持多种货币和交易方式。"
+    href="/docs/plugin_doc/Gene_Economy"
   />
 </CardGrid>
 
-## Why Documents?
+## 为什么选择Gene插件系列？
 
-Documents was created as an open-source project to help the community streamline their documentation process, enabling developers to focus on more critical 
-tasks. Built with scalability in mind, it adapts to projects of all sizes, from single-page guides to comprehensive knowledge bases. 
+Gene插件系列采用模块化设计，每个插件都专注于特定功能领域，同时保持高度的可扩展性和兼容性。这些插件共同构成了一个完整的服务器生态系统，能够满足各类服务器的需求。
 
-The integration of MDX, custom components and Tailwind CSS ensures an intuitive experience, simplifying both content creation and management. 
+主要应用场景：
+  - **服务器管理**：提供全面的服务器管理工具
+  - **玩家体验**：丰富的游戏内容和互动功能
+  - **经济系统**：完整的经济体系支持
+  - **安全防护**：多层次的安全保护机制
 
-  - **Product Guides**: Comprehensive manuals for product usage, setup and troubleshooting.
-  - **Business Documentation**: Clear and structured documentation for internal processes, policies and systems.
-  - **Technical Manuals**: Detailed guides for APIs, software development kits (SDKs) and technical processes.
+## 核心功能
 
-Documents offers extensive customization options, allowing you to easily align the design and functionality with your branding.
+以下是Gene插件系列的主要功能特点：
 
-## Key Features
+| 功能模块 | 描述 |
+|---------|------|
+| **服务器中间件** | 提供核心功能支持，包括数据存储、事件处理等 |
+| **安全防护** | 防作弊、防攻击、玩家行为监控等安全功能 |
+| **经济系统** | 多货币支持、交易系统、商店功能等 |
+| **角色系统** | 玩家角色管理、权限控制、等级系统等 |
+| **物品系统** | 自定义物品、物品种植、物品交易等 |
+| **数据管理** | 玩家数据缓存、数据同步、备份恢复等 |
+| **团队系统** | 团队管理、跨服组队、团队副本等 |
 
-Here are some of the features that make **Documents** ideal for building your documentation:
+## 如何使用本文档
 
-| Feature                              | Description                                                                                                      |
-|--------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| **Content Creation**                 | Write documentation using Markdown with JSX, custom components and Mermaid.js for diagrams.                      |
-| **Navigation & Structure**           | Organize content with multi-level navigation, automatically generated tables of contents and smooth pagination.  |
-| **Code Features**                    | Syntax highlighting, enhanced code blocks and a code switcher with copy functionality.                           |
-| **Advanced Search**                  | Fuzzy search with term highlighting for quick and accurate results.                                              |
-| **Theming & Layout**                 | Supports light/dark modes with automatic switching and responsive design.                                        |
-| **Math & Tables**                    | Seamless integration of LaTeX for math and structured tables.                                                    |
-| **SEO & Meta Tags**                  | Built-in SEO, metadata generation and control over meta tags for better search rankings and social sharing.      |
-| **AI-powered Docs (In Development)** | Future feature for AI-driven content discussions and search.                                                     |
+您可以通过左侧导航栏浏览不同插件的文档。每个插件的文档都包含详细的功能说明、配置方法和使用示例。右侧的目录可以帮助您快速定位到需要的章节。
 
-## How to Use These Documents
+使用搜索功能（`Ctrl+K` 或 `Cmd+K`）可以快速查找特定内容。
 
-You'll find the documentation's navigation bar on the left side of the screen. The pages are organized in a logical sequence, progressing from foundational 
-topics to more advanced concepts, allowing you to follow along step-by-step as you build your documentation. However, feel free to explore the content in 
-any order, selecting the sections most relevant to your use case.
+## 获取支持
 
-On the right side of the screen, a table of contents provides easy navigation between sections of each page. For quick access to specific content, you can 
-use the search bar at the top or the search shortcut (`Ctrl+K` or `Cmd+K`).
+如果您在使用过程中遇到任何问题，欢迎通过以下方式获取支持：
 
-Head over to the [Installation Guide](/docs/introduction/installation).
+- [GitHub Issues](https://github.com/your-repo)
+- [QQ群](your-qq-group)
+- [Discord](your-discord-link)
 
-## Join our Community
+## 插件列表
 
-If you have questions about anything related to Documents, you're always welcome to ask our community on [GitHub](https://github.com/rubixvi/rubix-documents), [X (Twitter)](https://x.com/rubixstory), [Facebook](https://www.facebook.com/rubixstudios) 
-and [Reddit](https://www.reddit.com/r/RubixStudios/).
+- Gene_ServerMiddleSystem - 服务器中间件系统
+- Gene_Shield - 安全防护系统
+- Gene_Roles - 角色管理系统
+- Gene_Kether - 核心功能支持
+- Gene_ChemdahTaskView - 任务系统
+- Gene_Economy - 经济系统
+- Gene_AttributeRegister - 属性注册系统
+- Gene_BlueprintCraft - 蓝图制作系统
+- Gene_DungeonBridgeTeam - 地牢组队系统
+- Gene_BlackMarket - 黑市系统
+- Gene_BungeeTeam - 跨服组队系统
+- Gene_Dplus - 增强功能系统
+- Gene_TreasureBox - 宝箱系统
+- Gene_KeepInventory - 死亡不掉落系统
+- Gene_ItemPlant - 物品种植系统
+- Gene_Inventory - 物品栏系统
+- Gene_PlayerDataCache - 玩家数据缓存系统

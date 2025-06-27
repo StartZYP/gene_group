@@ -40,20 +40,20 @@ Gene_GlobalMail 提供全服邮件收发、物品与货币附件、分页与排�
 收包说明：
 
 - 每封邮件数据结构如下（下标 mailIndex 从 0 开始）：
-  - Gene_Mail_{mailIndex}_uuid：邮件唯一ID
-  - Gene_Mail_{mailIndex}_senderUuid：发件人UUID
-  - Gene_Mail_{mailIndex}_receiverUuid：收件人UUID
-  - Gene_Mail_{mailIndex}_senderName：发件人名称
-  - Gene_Mail_{mailIndex}_receiverName：收件人名称
-  - Gene_Mail_{mailIndex}_currency：邮件附带货币数量
-  - Gene_Mail_{mailIndex}_currencyType：货币类型
-  - Gene_Mail_{mailIndex}_content：邮件内容
-  - Gene_Mail_{mailIndex}_sendTime：发送时间
-  - Gene_Mail_{mailIndex}_isRead：是否已读
-  - Gene_Mail_{mailIndex}_isClaimed：是否已领取
+  - Gene_Mail_(mailIndex)_uuid：邮件唯一ID
+  - Gene_Mail_(mailIndex)_senderUuid：发件人UUID
+  - Gene_Mail_(mailIndex)_receiverUuid：收件人UUID
+  - Gene_Mail_(mailIndex)_senderName：发件人名称
+  - Gene_Mail_(mailIndex)_receiverName：收件人名称
+  - Gene_Mail_(mailIndex)_currency：邮件附带货币数量
+  - Gene_Mail_(mailIndex)_currencyType：货币类型
+  - Gene_Mail_(mailIndex)_content：邮件内容
+  - Gene_Mail_(mailIndex)_sendTime：发送时间
+  - Gene_Mail_(mailIndex)_isRead：是否已读
+  - Gene_Mail_(mailIndex)_isClaimed：是否已领取
 
 - 邮件物品栏：
-  - Gene_Mail_{mailIndex}_Slot_{itemIndex}：邮件内物品（itemIndex 从 0 开始）
+  - Gene_Mail_(mailIndex)_Slot_(itemIndex)：邮件内物品（itemIndex 从 0 开始）
 
 - 打开界面时会自动推送上述数据包到客户端。
 

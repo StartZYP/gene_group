@@ -40,6 +40,10 @@ export const Documents: Paths[] = [
             href: "/Gene_Inventory",
           },
           {
+            title: "[全局邮件]Gene_GlobalMail",
+            href: "/Gene_GlobalMail",
+          },
+          {
               title: "[副本附属]Gene_Dplus",
               href: "/Gene_Dplus",
           },

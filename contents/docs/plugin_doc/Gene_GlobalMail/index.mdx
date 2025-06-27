@@ -1,0 +1,74 @@
+---
+title: Gene_GlobalMail
+description: Gene_GlobalMail 插件文档
+keywords: ["mail", "globalmail", "mdx", "nextjs", "documents"]
+---
+
+# Gene_GlobalMail 插件文档
+
+## 插件简介
+
+Gene_GlobalMail 提供全服邮件收发、物品与货币附件、分页与排序等功能，支持玩家间邮件交互。
+
+## 发包文档
+
+### 邮件收发界面
+
+#### 服务端收包
+
+界面名称: Gene_GlobalMail
+
+收包说明：
+
+- 四参数交互：
+  - inbox [page] [pageSize] [orderType]：获取收件箱邮件列表
+    - data: "inbox"
+    - page: 页码（默认1）
+    - pageSize: 每页数量（默认5）
+    - orderType: 排序方式（asc/desc，默认desc）
+
+  - outbox [page] [pageSize] [orderType]：获取发件箱邮件列表
+    - data: "outbox"
+    - page: 页码（默认1）
+    - pageSize: 每页数量（默认5）
+    - orderType: 排序方式（asc/desc，默认desc）
+
+#### 界面收包
+
+界面名称: Gene_GlobalMail_Inbox / Gene_GlobalMail_Outbox
+
+收包说明：
+
+- 每封邮件数据结构如下（下标 mailIndex 从 0 开始）：
+  - Gene_Mail_{mailIndex}_uuid：邮件唯一ID
+  - Gene_Mail_{mailIndex}_senderUuid：发件人UUID
+  - Gene_Mail_{mailIndex}_receiverUuid：收件人UUID
+  - Gene_Mail_{mailIndex}_senderName：发件人名称
+  - Gene_Mail_{mailIndex}_receiverName：收件人名称
+  - Gene_Mail_{mailIndex}_currency：邮件附带货币数量
+  - Gene_Mail_{mailIndex}_currencyType：货币类型
+  - Gene_Mail_{mailIndex}_content：邮件内容
+  - Gene_Mail_{mailIndex}_sendTime：发送时间
+  - Gene_Mail_{mailIndex}_isRead：是否已读
+  - Gene_Mail_{mailIndex}_isClaimed：是否已领取
+
+- 邮件物品栏：
+  - Gene_Mail_{mailIndex}_Slot_{itemIndex}：邮件内物品（itemIndex 从 0 开始）
+
+- 打开界面时会自动推送上述数据包到客户端。
+
+## 参数说明
+
+- data："inbox" 或 "outbox"，指定查询收件箱或发件箱
+- page：页码，整数，默认1
+- pageSize：每页数量，整数，默认5
+- orderType：排序方式，"asc"（升序）或 "desc"（降序），默认desc
+
+## 插件工作日志
+
+| 提交时间 | 提交内容 |
+|---|---|
+| 2024-06-xx | 初始化文档 |
+
+---
+**插件工作日志**

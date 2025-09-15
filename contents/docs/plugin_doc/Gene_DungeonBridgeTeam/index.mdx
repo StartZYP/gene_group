@@ -4,8 +4,6 @@ description: Gene_DungeonBridgeTeam 插件文档
 keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 ---
 
-
-
 ## 发包文档
 
 <Step>
@@ -29,19 +27,34 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 
 返回副本数据:
 
-GeneDungeonBridgeTeamView_DungeonKey (副本名)
+**基础信息:**
+- GeneDungeonBridgeTeamView_DungeonKey (副本名)
+- GeneDungeonBridgeTeamView_自定义数据key (配置中自定义)
 
-GeneDungeonBridgeTeamView_自定义数据key (配置中自定义)
+**排行榜数据:**
+- GeneDungeonBridgeTeamView_0_RankTime (第1名通关时间)
+- GeneDungeonBridgeTeamView_0_RankPlayer (第1名玩家名)
+- GeneDungeonBridgeTeamView_1_RankTime (第2名通关时间)
+- GeneDungeonBridgeTeamView_1_RankPlayer (第2名玩家名)
+- GeneDungeonBridgeTeamView_2_RankTime (第3名通关时间)
+- GeneDungeonBridgeTeamView_2_RankPlayer (第3名玩家名)
 
-GeneDungeonBridgeTeamView_1_Time (队长通关排名数据)
+**个人数据:**
+- GeneDungeonBridgeTeamView_UseTime (自己的通关时间)
+- GeneDungeonBridgeTeamView_MeUseTime (自己的通关时间，用于UI刷新)
 
-GeneDungeonBridgeTeamView_2_Time
+**副本CD信息:**
+- GeneDungeonBridgeTeamView_CDRemainingTime (剩余CD时间，格式: "1小时30分钟" 或 "45分钟")
+- GeneDungeonBridgeTeamView_InCD (是否在CD中: "true" 或 "false")
+- GeneDungeonBridgeTeamView_CDPeriod (副本CD周期配置，单位: 分钟)
 
-GeneDungeonBridgeTeamView_3_Time
+**副本列表信息:**
+- GeneDungeonBridgeTeamView_DungeonKeySize (副本总数)
+- GeneDungeonBridgeTeamView_DungeonKey_0 (第1个副本key)
+- GeneDungeonBridgeTeamView_DungeonKey_1 (第2个副本key)
+- ... (以此类推)
 
-GeneDungeonBridgeTeamView_Me (自己的通关数据)
-
-槽位变量名: GeneDungeonBridgeTeamView_Slot_索引
+**槽位变量名:** GeneDungeonBridgeTeamView_Slot_索引
 
 </StepItem>
 
@@ -59,8 +72,61 @@ GeneDungeonBridgeTeamView_Me (自己的通关数据)
 
 </StepItem>
 
+<StepItem title="退出副本">
+
+数据包1: leave
+
+---
+
+无返回数据,直接结束当前副本
+
+</StepItem>
+
 </Step>
 
+## 命令文档
+
+### 主命令
+- `/GeneDungeonBridgeTeam` 或 `/gdbt` - 主命令，显示帮助信息
+- 权限: `GeneDungeonBridgeTeam.command`
+
+### 子命令
+
+#### reload
+- 用法: `/gdbt reload`
+- 功能: 重新加载插件配置和副本数据
+- 权限: 需要主命令权限
+
+#### open
+- 用法: `/gdbt open <dungeon_key>`
+- 功能: 打开指定副本的UI界面
+- 参数: 
+  - `dungeon_key`: 副本关键key（支持Tab补全）
+- 权限: 需要主命令权限
+- 说明: 只有玩家可以使用，控制台无法使用
+
+#### resetCD
+- 用法: `/gdbt resetCD <player_name> <dungeon_key>`
+- 功能: 重置指定玩家的指定副本CD
+- 参数:
+  - `player_name`: 玩家名称
+  - `dungeon_key`: 副本关键key（支持Tab补全）
+- 权限: 需要主命令权限
+
+#### resetAllCD
+- 用法: `/gdbt resetAllCD <player_name>`
+- 功能: 重置指定玩家的所有副本CD
+- 参数:
+  - `player_name`: 玩家名称
+- 权限: 需要主命令权限
+
+#### viewCD
+- 用法: `/gdbt viewCD <player_name>`
+- 功能: 查看指定玩家的所有副本CD状态
+- 参数:
+  - `player_name`: 玩家名称
+- 权限: 需要主命令权限
+- 输出格式: 显示每个副本的剩余CD时间
 
 # 配置Kether变量
 
@@ -96,10 +162,33 @@ HARD(3);
 
 切记都是字符串
 
+## API接口文档
+
+### DungeonBridgeTeamApi
+
+#### 副本时间相关
+- `setPlayerDungeonUseTime(playerName: String, dungeonKey: String, useTime: Int)` - 设置玩家副本通关时间
+- `getPlayerDungeonDataTime(playerName: String, dungeonKey: String): Int?` - 获取玩家副本通关时间
+
+#### 副本CD相关
+- `isPlayerInDungeonCD(playerName: String, dungeonKey: String): Boolean` - 判断玩家是否在副本CD中
+- `setPlayerDungeonCD(playerName: String, dungeonKey: String, cdMinutes: Int)` - 设置玩家副本CD
+- `getPlayerDungeonCDRemainingTime(playerName: String, dungeonKey: String): Long` - 获取玩家副本CD剩余时间（分钟）
+- `getDungeonCDPeriod(dungeonKey: String): Int` - 获取副本CD周期配置（分钟）
+
+#### 队伍相关
+- `startCheckTeamReady(teamLeader: String, playerNames: MutableList<String>, dungeonKey: String, dungeonLevel: String)` - 开始检查队伍准备状态
+- `dungeonAllowEnter(player: Player, dungeonKey: String, teamNumber: Int): String` - 检查玩家是否可以进入副本
+
 ## 插件工作日志
 
 | 提交时间                              | 提交内容                                                                          |
 |--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-01-16 00:38:14 +0800** | 更新副本CD接口与发包，完善MDX文档 |
+| **2025-09-16 00:38:14 +0800** | 更新副本CD接口与发包 |
+| **2025-09-10 00:37:48 +0800** | 更新cicd流程 |
+| **2025-09-09 10:31:52 +0800** | 更新cicd流程 |
+| **2025-09-07 11:17:44 +0800** | 从dp迁移到ax上 |
 | **2024-12-11 23:13:23 +0800** | [fix]修复退副本导致不传送Bug |
 | **2024-12-11 16:17:23 +0800** | [fix]修复退副本逻辑after取不到成员问题 |
 | **2024-12-03 18:56:14 +0800** | [fit]新增dp副本对接所需难度参数 |
@@ -125,22 +214,3 @@ HARD(3);
 
 ---
 **插件工作日志**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

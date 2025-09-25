@@ -4,10 +4,389 @@ description: Gene_PlayerDataCache 插件文档
 keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 ---
 
+## 插件简介
+
+Gene_PlayerDataCache 是一个用于缓存玩家数据的插件，支持跨服数据同步和体力值管理系统。该插件通过Redis实现数据持久化，能够实时同步玩家的位置、职业、等级等信息到BungeeCord网络。
+
+## 主要功能
+
+- **玩家数据缓存**: 实时缓存玩家的战斗력、职业等级、生涯等级、位置等信息
+- **跨服数据同步**: 通过BungeeCord实现跨服玩家数据同步
+- **体力值系统**: 完整的体力值管理，支持消耗、恢复、检查等操作
+- **在线状态同步**: 实时同步玩家在线状态到BungeeCord
+- **Redis数据持久化**: 使用Redis作为数据存储后端
+
+## 命令系统
+
+### 玩家数据缓存命令
+
+<Step>
+<StepItem title="主命令">
+
+**命令**: `/playerdatacache` 或 `/pdc`
+
+**权限**: `playerdatacache.command`
+
+**描述**: 玩家数据缓存插件的主命令
+
+</StepItem>
+
+<StepItem title="查看玩家数据">
+
+**命令**: `/playerdatacache data <玩家名>`
+
+**权限**: `playerdatacache.command`
+
+**描述**: 查看指定玩家的缓存数据
+
+**参数**:
+- `玩家名`: 要查询的玩家名称
+
+**示例**:
+```
+/pdc data Steve
+```
+
+**返回信息**:
+- 玩家名称
+- 战斗力
+- 当前职业等级
+- 当前职业
+- 生涯等级
+- 当前位置
+- 当前服务器
+- 在线状态
+- 基地位置
+- 基地服务器
+
+</StepItem>
+
+<StepItem title="查看体力数据">
+
+**命令**: `/playerdatacache stamina <玩家名>`
+
+**权限**: `playerdatacache.command`
+
+**描述**: 查看指定玩家的体力数据，包含体力条显示
+
+**参数**:
+- `玩家名`: 要查询的玩家名称
+
+**示例**:
+```
+/pdc stamina Steve
+```
+
+</StepItem>
+
+<StepItem title="重载配置">
+
+**命令**: `/playerdatacache reload`
+
+**权限**: `playerdatacache.command`
+
+**描述**: 重载插件配置
+
+</StepItem>
+</Step>
+
+### 体力值管理命令
+
+<Step>
+<StepItem title="主命令">
+
+**命令**: `/stamina` 或 `/stm`
+
+**权限**: `stamina.command`
+
+**描述**: 体力值管理插件的主命令
+
+</StepItem>
+
+<StepItem title="查看体力信息">
+
+**命令**: `/stamina info <玩家名>`
+
+**权限**: `stamina.command`
+
+**描述**: 查看指定玩家的体力信息，包含体力条显示
+
+**参数**:
+- `玩家名`: 要查询的玩家名称
+
+**示例**:
+```
+/stm info Steve
+```
+
+</StepItem>
+
+<StepItem title="创建体力数据">
+
+**命令**: `/stamina create <玩家名> <最大体力值>`
+
+**权限**: `stamina.command`
+
+**描述**: 为指定玩家创建体力数据
+
+**参数**:
+- `玩家名`: 玩家名称
+- `最大体力值`: 最大体力值（可选，默认为100）
+
+**示例**:
+```
+/stm create Steve 150
+```
+
+</StepItem>
+
+<StepItem title="设置体力值">
+
+**命令**: `/stamina set <玩家名> <当前体力值> <最大体力值>`
+
+**权限**: `stamina.command`
+
+**描述**: 设置指定玩家的体力值
+
+**参数**:
+- `玩家名`: 玩家名称
+- `当前体力值`: 当前体力值
+- `最大体力值`: 最大体力值（可选，默认为100）
+
+**示例**:
+```
+/stm set Steve 80 150
+```
+
+</StepItem>
+
+<StepItem title="消耗体力">
+
+**命令**: `/stamina consume <玩家名> <消耗量>`
+
+**权限**: `stamina.command`
+
+**描述**: 消耗指定玩家的体力
+
+**参数**:
+- `玩家名`: 玩家名称
+- `消耗量`: 要消耗的体力值
+
+**示例**:
+```
+/stm consume Steve 20
+```
+
+</StepItem>
+
+<StepItem title="恢复体力">
+
+**命令**: `/stamina restore <玩家名> <恢复量>`
+
+**权限**: `stamina.command`
+
+**描述**: 恢复指定玩家的体力
+
+**参数**:
+- `玩家名`: 玩家名称
+- `恢复量`: 要恢复的体力值
+
+**示例**:
+```
+/stm restore Steve 30
+```
+
+</StepItem>
+
+<StepItem title="设置满体力">
+
+**命令**: `/stamina full <玩家名> <最大体力值>`
+
+**权限**: `stamina.command`
+
+**描述**: 将指定玩家的体力设置为满值
+
+**参数**:
+- `玩家名`: 玩家名称
+- `最大体力值`: 最大体力值（可选，默认为100）
+
+**示例**:
+```
+/stm full Steve 150
+```
+
+</StepItem>
+
+<StepItem title="重载配置">
+
+**命令**: `/stamina reload`
+
+**权限**: `stamina.command`
+
+**描述**: 重载体力系统配置
+
+</StepItem>
+</Step>
+
+## API 接口
+
+### PlayerDataCacheApi
+
+#### 玩家数据相关
+
+**获取玩家数据信息**
+```kotlin
+fun getDataInfo(player: String): PlayerCacheData?
+```
+- **参数**: `player` - 玩家名称
+- **返回**: `PlayerCacheData?` - 玩家缓存数据，如果不存在返回null
+
+#### 体力值相关API
+
+**检测玩家是否有体力数据**
+```kotlin
+fun hasStaminaData(player: String): Boolean
+```
+- **参数**: `player` - 玩家名称
+- **返回**: `Boolean` - 是否存在体力数据
+
+**获取玩家体力数据**
+```kotlin
+fun getStaminaData(player: String): StaminaData?
+```
+- **参数**: `player` - 玩家名称
+- **返回**: `StaminaData?` - 体力数据，如果不存在返回null
+
+**创建玩家体力数据**
+```kotlin
+fun createStaminaData(player: String, maxStamina: Int = 100): StaminaData
+```
+- **参数**: 
+  - `player` - 玩家名称
+  - `maxStamina` - 最大体力值（默认为100）
+- **返回**: `StaminaData` - 创建的体力数据
+
+**更新玩家体力数据**
+```kotlin
+fun updateStaminaData(player: String, currentStamina: Int, maxStamina: Int = 100)
+```
+- **参数**:
+  - `player` - 玩家名称
+  - `currentStamina` - 当前体力值
+  - `maxStamina` - 最大体力值（默认为100）
+
+**消耗玩家体力**
+```kotlin
+fun consumeStamina(player: String, amount: Int): Boolean
+```
+- **参数**:
+  - `player` - 玩家名称
+  - `amount` - 消耗的体力值
+- **返回**: `Boolean` - 是否成功消耗体力
+
+**恢复玩家体力**
+```kotlin
+fun restoreStamina(player: String, amount: Int)
+```
+- **参数**:
+  - `player` - 玩家名称
+  - `amount` - 恢复的体力值
+
+**设置玩家体力为满值**
+```kotlin
+fun setStaminaToFull(player: String, maxStamina: Int = 100)
+```
+- **参数**:
+  - `player` - 玩家名称
+  - `maxStamina` - 最大体力值（默认为100）
+
+**检查玩家体力是否足够**
+```kotlin
+fun hasEnoughStamina(player: String, amount: Int): Boolean
+```
+- **参数**:
+  - `player` - 玩家名称
+  - `amount` - 需要的体力值
+- **返回**: `Boolean` - 是否足够体力
+
+**获取玩家当前体力值**
+```kotlin
+fun getCurrentStamina(player: String): Int
+```
+- **参数**: `player` - 玩家名称
+- **返回**: `Int` - 当前体力值
+
+**获取玩家最大体力值**
+```kotlin
+fun getMaxStamina(player: String): Int
+```
+- **参数**: `player` - 玩家名称
+- **返回**: `Int` - 最大体力值
+
+## 数据模型
+
+### PlayerCacheData
+
+玩家缓存数据模型，包含以下字段：
+
+- `playerName: String` - 玩家名称
+- `combatPower: Int` - 战斗力
+- `currentRoleLevel: Int` - 当前职业等级
+- `currentRoleKey: String` - 当前职业键值
+- `careerLevel: Int` - 生涯等级
+- `currentLocation: String` - 当前位置
+- `currentServer: String` - 当前服务器
+- `online: Boolean` - 在线状态
+- `baseLocation: String` - 位置
+- `baseServer: String` - 服务器
+
+### StaminaData
+
+体力值数据模型，包含以下字段：
+
+- `currentStamina: Int` - 当前体力值
+- `maxStamina: Int` - 最大体力值
+
+**方法**:
+- `consumeStamina(amount: Int): Boolean` - 消耗体力
+- `restoreStamina(amount: Int)` - 恢复体力
+- `setStamina(amount: Int)` - 设置体力值
+- `updateMaxStamina(maxAmount: Int)` - 更新最大体力值
+- `hasEnoughStamina(amount: Int): Boolean` - 检查体力是否足够
+
+## 配置说明
+
+### config.yml
+
+```yaml
+# 首次进服出生点 非登录服
+BaseSpawn: "shoot, 50, -40, 58, -26.9, 6.4"
+```
+
+### RedisConf.yml
+
+Redis配置文件，用于配置Redis连接参数。
+
+## 依赖关系
+
+- **Gene_CareerLevel**: 生涯等级系统
+- **Gene_Roles**: 角色系统
+- **Gene_ServerMiddleSystem**: 服务器中间件系统
+- **Redis**: 数据持久化存储
+
 ## 插件工作日志
 
 | 提交时间                              | 提交内容                                                                          |
 |--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-09-25 01:57:47 +0000** | [feat]修复冲突问题 |
+| **2025-09-25 09:53:36 +0800** | [feat]修复体力命令模块部分bug |
+| **2025-09-25 01:51:25 +0000** | [feat]优化体力api和command |
+| **2025-09-24 17:37:41 +0000** | [feat]更新体力值 |
+| **2025-09-21 01:43:34 +0800** | 修改依赖关系 |
+| **2025-09-09 10:34:46 +0800** | 添加固定版本号latest |
+| **2025-09-09 10:25:12 +0800** | 移除版本号 |
+| **2025-09-09 00:47:00 +0800** | 修改gradle下载地址 |
+| **2025-09-09 00:41:40 +0800** | 修改初始化逻辑 |
 | **2024-10-31 20:15:21 +0800** | [fat]升级版本号 |
 | **2024-10-31 20:10:25 +0800** | [fat]补全位置序列化的世界名 |
 | **2024-10-31 14:42:33 +0800** | [fat]修改为软依赖可有可无 |
@@ -21,6 +400,7 @@ keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 
 ---
 **插件工作日志**
+
 
 
 

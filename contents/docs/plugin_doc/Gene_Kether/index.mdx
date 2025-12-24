@@ -3,47 +3,213 @@ title: Gene_Kether
 description: Gene_Kether 插件文档
 keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
 ---
-
-
 ## Kether 函数文档
 
+
+### EntityDistance
+用法：
+```
+EntityDistance (player) (mobsName) (distance)
+```
+- 参数说明：
+  - `player`: 玩家名称或玩家对象
+  - `mobsName`: 实体名匹配串（部分匹配）
+  - `distance`: 搜索半径（双精度）
+
+返回值：
+- 找到包含 `mobsName` 的最近实体时，返回玩家与该实体的距离（double）。未找到返回 void。
+
+示例：
+```
+EntityDistance "Alice" "Zombie" 20.0
+```
+
+### PlaySound
+用法：
+```
+PlaySound (playername) (resourcePath) (soundCategory) (distOrRoll) (pitch) (keepTime)
+```
+- 参数说明：
+  - `playername`: 玩家名称
+  - `resourcePath`: 资源路径（声音文件或资源标识）
+  - `soundCategory`: 声音类别或频道（由平台/插件定义）
+  - `distOrRoll`: 距离或卷（double）
+  - `pitch`: 音调（int）
+  - `keepTime`: 持续时间（int 或 long，视实现）
+
+示例：
+```
+PlaySound "Bob" "sounds/event.ogg" "MASTER" 10.0 1 5000
+```
+
+### MythicMobsKill
+用法：
+```
+MythicMobsKill (mobName) (worldName)
+```
+- 参数说明：
+  - `mobName`: MythicMobs 内部类型名的一部分
+  - `worldName`: 世界名称（用于筛选）
+
+说明：
+- 会遍历 MythicBukkit 的活跃实体列表，匹配后销毁并注销该实体。
+
+示例：
+```
+MythicMobsKill "BlazeBoss" "world_nether"
+```
+
+### BlockAnimation
+用法：
+```
+BlockAnimation (player) (animationName) (x) (y) (z) (speed) (transitionTime) (time)
+```
+- 参数说明：
+  - `player`: 玩家名称
+  - `animationName`: 动画名称
+  - `x`,`y`,`z`: 坐标（int）
+  - `speed`: 动画速度（double）
+  - `transitionTime`: 过渡时间（int）
+  - `time`: 持续时间（long）
+
+说明：
+- 使用 `NetworkMessageSender.sendBlockAnimation` 向客户端发送方块动画消息。
+
+示例：
+```
+BlockAnimation "Alice" "explosion" 100 64 200 1.2 10 2000
+```
+
+### MythicMobsCast
+用法：
+```
+MythicMobsCast (player) (skill)
+```
+- 参数说明：
+  - `player`: 玩家名称
+  - `skill`: MythicMobs 技能名或标识
+
+说明：
+- 将以玩家为释放者对目标施放指定 MythicMobs 技能。
+
+示例：
+```
+MythicMobsCast "Charlie" "fireball"
+```
+
+### SendAdyeshachAction
+用法：
+```
+SendAdyeshachAction (player) (entityid) (animationName) (speed) (transitionTime) (time)
+```
+- 参数说明：
+  - `player`: 玩家名称
+  - `entityid`: Adyeshach 实体 id（可通过命令查询）
+  - `animationName`: 动作名称
+  - `speed`: 动作速度（double）
+  - `transitionTime`: 过渡时间（int）
+  - `time`: 持续时间（long）
+
+说明：
+- 对指定 Adyeshach 实体发送动画消息（会对空结果做空检查）。
+
+示例：
+```
+SendAdyeshachAction "Alice" "npc_123" "wave" 1.0 5 1000
+```
+
 ### SendImageTitle
+用法：
 ```
 SendImageTitle (player) (path) (width) (height) (keepms) (soundpath)
 ```
-- **参数说明:**
-  - `player`: 玩家名称
-  - `path`: 图片路径
-  - `width`: 图片宽度
-  - `height`: 图片高度
-  - `keepms`: 显示持续时间(毫秒)
-  - `soundpath`: 音效路径
+- 参数说明：
+  - `player`: 玩家对象或名称
+  - `path`: 图片路径（相对或绝对）
+  - `width`: 宽度（double）
+  - `height`: 高度（double）
+  - `keepms`: 显示时长（long，毫秒）
+  - `soundpath`: 播放音效路径（text，可选）
+
+示例：
+```
+SendImageTitle "Alice" "images/title.png" 400.0 100.0 3000 "sounds/notify.ogg"
+```
 
 ### SendMessage
+用法：
 ```
 SendMessage (player) (message)
 ```
-- **参数说明:**
+- 参数说明：
+  - `player`: 玩家对象或名称
+  - `message`: 文本内容
+
+示例：
+```
+SendMessage "Bob" "欢迎来到服务器！"
+```
+
+### AddWayPotion（AddWayPotion）
+用法：
+```
+AddWayPotion (player) (id) (title) (waypointConfigId) (x) (y) (z)
+```
+- 参数说明：
   - `player`: 玩家名称
-  - `message`: 要发送的消息内容
+  - `id`: 路标 id（字符串）
+  - `title`: 路标显示标题
+  - `waypointConfigId`: 路标配置 id
+  - `x`,`y`,`z`: 坐标（double）
+
+说明：
+- 通过 `arcartXHandler.addWayPoint` 为玩家添加路标点。
+
+示例：
+```
+AddWayPotion "Alice" "wp_home" "家" "default" 100.0 64.0 200.0
+```
+
+### DeleteWayPotion（DeleteWayPotion）
+用法：
+```
+DeleteWayPotion (player) (id) (regexStr)
+```
+- 参数说明：
+  - `player`: 玩家名称
+  - `id`: 要删除的路标 id 或匹配串
+  - `regexStr`: 是否使用正则匹配（true/false）
+
+示例：
+```
+DeleteWayPotion "Alice" "wp_.*" true
+```
 
 ### SendCaption
+用法：
 ```
 SendCaption (player) (headPath) (name) (message) (keepMS) (soundpath)
 ```
-- **参数说明:**
-  - `player`: 玩家名称
-  - `headPath`: 头像路径
+- 参数说明：
+  - `player`: 玩家对象或名称
+  - `headPath`: 头像路径（可选）
   - `name`: 显示名称
-  - `message`: 消息内容
-  - `keepMS`: 显示持续时间(毫秒)
-  - `soundpath`: 音效路径
+  - `message`: 文本
+  - `keepMS`: 显示时长（long，毫秒）
+  - `soundpath`: 音效路径（可选）
+
+示例：
+```
+SendCaption "Alice" "heads/alice.png" "系统" "任务已完成" 2500 "sounds/ping.ogg"
+```
 
 
 ## 插件工作日志
 
 | 提交时间                              | 提交内容                                                                          |
 |--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-12-24 11:05:01 +0800** | 新增WayPotion方法添加和移除 |
+| **2025-10-22 21:13:28 +0800** | 更新EntityDistance距离判断 |
 | **2025-09-20 16:23:31 +0800** | 更新PlaySound声音问题 |
 | **2025-09-20 12:31:46 +0800** | 更新gradle地址 |
 | **2025-09-20 11:38:58 +0800** | 新增声音扩展kether |
@@ -57,6 +223,7 @@ SendCaption (player) (headPath) (name) (message) (keepMS) (soundpath)
 
 ---
 **插件工作日志**
+
 
 
 

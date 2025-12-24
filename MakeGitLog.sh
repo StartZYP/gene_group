@@ -16,7 +16,7 @@ if [ $# -ne 2 ]; then
 fi
 
 # 定义目录和文件
-dir="/home/wiki/gene_group/contents/docs/plugin_doc/$1"
+dir="/data/gene_wiki/gene_group/contents/docs/plugin_doc/$1"
 index_file="$dir/index.mdx"
 log_file="$2"  # 文件路径作为第二个参数
 

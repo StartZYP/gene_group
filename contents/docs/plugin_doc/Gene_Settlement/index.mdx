@@ -1,0 +1,105 @@
+---
+title: Gene_Settlement
+description: Gene_Settlement 插件文档
+keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
+---
+
+# Gene_Settlement 插件文档
+
+## 概述
+
+Gene_Settlement 是一个地牢结算系统插件，用于处理地牢副本的战利品分配和展示。主要功能包括：
+
+- 地牢结算物品池抽取
+- 战利品展示界面
+- 玩家间战利品查看
+
+## 发包文档
+
+### 结算界面
+
+#### 服务端收包（客户端 → 服务端）
+
+界面名称: Gene_Settlement_View
+
+收包说明:
+
+1. 三参数交互:
+   - give_loot [dungeonKey] [difficulty] [count]: 从指定地牢和难度中抽取指定数量的战利品
+     - dungeonKey: 地牢标识符
+     - difficulty: 难度等级
+     - count: 抽取数量（默认3）
+
+2. 双参数交互:
+   - show_other_loot [targetUuid] [targetIndex]: 显示其他玩家的战利品
+     - targetUuid: 目标玩家UUID
+     - targetIndex: 显示索引
+
+   - request_view_loot [targetUuid] [lootNumber]: 请求查看指定玩家的战利品
+     - targetUuid: 目标玩家UUID
+     - lootNumber: 战利品编号
+
+#### 界面收包（服务端 → 客户端）
+
+界面名称: Gene_Settlement
+
+收包说明:
+
+1. GeneSettlement_UnDrawn_Slot_[index] (未抽取物品槽位)
+   - 动态物品槽位，index从0开始
+
+2. GeneSettlement_OtherPlayer_[targetIndex]_Slot_[index] (其他玩家物品槽位)
+   - targetIndex: 目标玩家索引
+   - index: 物品槽位索引，从0开始
+
+### 查看界面
+
+#### 界面收包（服务端 → 客户端）
+
+界面名称: Gene_Settlement_View
+
+收包说明:
+
+1. GeneSettlement_LootData (战利品数据)
+   - GeneSettlement_LootData_PlayerName: 玩家名称
+   - GeneSettlement_LootData_PlayerUuid: 玩家UUID
+   - GeneSettlement_LootData_LootNumber: 战利品编号
+
+## 数据结构
+
+### Settlement 配置结构
+
+```yaml
+# 地牢配置示例
+DungeonKey: "jzysc"  # 地牢唯一标识符
+
+pools:
+  easy:  # 难度等级
+    - id: "item_id_1"      # 物品ID
+      amount: 1            # 物品数量
+      weight: 10           # 权重（影响抽取概率）
+    - id: "item_id_2"
+      amount: 2
+      weight: 5
+  normal:
+    - id: "item_id_3"
+      amount: 1
+      weight: 8
+```
+
+### PoolItem 数据类
+
+- id: 物品配置ID
+- item: ItemStack对象
+- amount: 物品数量
+- weight: 抽取权重
+
+## 插件工作日志
+
+| 提交时间                              | 提交内容                                                                          |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-12-23 20:19:02 +0800** | [feat]修改仓库gradle地址 |
+| **2025-12-23 20:16:45 +0800** | [feat]初始化提交 |
+| **2025-12-20 21:58:03 +0800** | Initial commit |
+---
+**插件工作日志**

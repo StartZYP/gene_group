@@ -52,6 +52,10 @@ export const Documents: Paths[] = [
             href: "/Gene_ChemdahTaskView",
           },
           {
+            title: "[地牢结算]Gene_Settlement",
+            href: "/Gene_Settlement",
+          },
+          {
             title: "[护盾模块]Gene_Shield",
             href: "/Gene_Shield",
           },

@@ -48,6 +48,10 @@ export const Documents: Paths[] = [
               href: "/Gene_Dplus",
           },
           {
+              title: "[副本增强]Gene_dungeonplus",
+              href: "/Gene_dungeonplus",
+          },
+          {
             title: "[任务系统]Gene_ChemdahTaskView",
             href: "/Gene_ChemdahTaskView",
           },
@@ -90,6 +94,10 @@ export const Documents: Paths[] = [
           {
             title: "[Kether脚本扩展]Gene_Kether",
             href: "/Gene_Kether",
+          },
+          {
+            title: "[副本增强扩展]Gene_dungeonplus",
+            href: "/Gene_dungeonplus",
           },
       ],
     },

@@ -203,11 +203,29 @@ SendCaption (player) (headPath) (name) (message) (keepMS) (soundpath)
 SendCaption "Alice" "heads/alice.png" "系统" "任务已完成" 2500 "sounds/ping.ogg"
 ```
 
+### OpenAxGui
+用法：
+```
+OpenAxGui (player) (guiId)
+```
+- 参数说明：
+  - `player`: 玩家名称
+  - `guiId`: GUI 界面 ID
+
+说明：
+- 通过 ArcartXAPI 打开指定 ID 的用户界面。
+
+示例：
+```
+OpenAxGui "Alice" "main_menu"
+```
+
 
 ## 插件工作日志
 
 | 提交时间                              | 提交内容                                                                          |
 |--------------------------------------|---------------------------------------------------------------------------------|
+| **2025-12-30 08:39:58 +0800** | 更新OpenAxGuiKether方法 |
 | **2025-12-24 11:05:01 +0800** | 新增WayPotion方法添加和移除 |
 | **2025-10-22 21:13:28 +0800** | 更新EntityDistance距离判断 |
 | **2025-09-20 16:23:31 +0800** | 更新PlaySound声音问题 |
@@ -223,6 +241,7 @@ SendCaption "Alice" "heads/alice.png" "系统" "任务已完成" 2500 "sounds/pi
 
 ---
 **插件工作日志**
+
 
 
 

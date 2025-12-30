@@ -16,6 +16,10 @@ export const Documents: Paths[] = [
       heading: "宿命重载插件文档",
       items: [
           {
+              title: "[属性注册]Gene_AttributeRegister",
+              href: "/Gene_AttributeRegister",
+          },
+          {
               title: "[数据同步]Gene_PlayerDataCache",
               href: "/Gene_PlayerDataCache",
           },
@@ -54,6 +58,10 @@ export const Documents: Paths[] = [
           {
             title: "[任务系统]Gene_ChemdahTaskView",
             href: "/Gene_ChemdahTaskView",
+          },
+          {
+            title: "[职业等级]Gene_CareerLevel",
+            href: "/Gene_CareerLevel",
           },
           {
             title: "[地牢结算]Gene_Settlement",

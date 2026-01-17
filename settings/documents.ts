@@ -68,6 +68,10 @@ export const Documents: Paths[] = [
             href: "/Gene_Settlement",
           },
           {
+            title: "[考古系统]Gene_Archaeology",
+            href: "/Gene_Archaeology",
+          },
+          {
             title: "[护盾模块]Gene_Shield",
             href: "/Gene_Shield",
           },

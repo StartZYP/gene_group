@@ -1,0 +1,427 @@
+---
+title: Gene_Archaeology
+description: Gene_Archaeology 插件文档
+keywords: ["navigation", "sidebar", "menus", "mdx", "nextjs", "documents"]
+---
+
+# Gene_Archaeology 插件文档
+
+## 概述
+
+Gene_Archaeology 是一个考古系统插件，用于处理玩家考古数据的收集、展示和奖励系统。主要功能包括：
+
+- 考古数据的类型分组展示
+- 考古条目的分页浏览
+- 考古组奖励的领取系统
+- 玩家考古进度的追踪
+
+## 界面收发包文档
+
+### 打开界面发包
+
+#### 界面发包（服务端 → 客户端）
+
+界面名称: `Gene_Archaeology_View`
+
+---
+
+#### 1. `GeneArchaeology_GroupsData` - 考古组数据发包
+
+**包处理器:** `GeneArchaeology_GroupsData`
+
+**功能描述：**
+向客户端发送指定类型的考古组列表数据，以及玩家的考古进度信息。
+
+**数据结构说明 (responseData):**
+
+`responseData` 是一个 `Map<String, String>` 类型的数据结构，包含考古组数据和玩家进度信息。
+
+数据格式说明：
+
+1. **玩家进度数据**
+   - 键格式: `GeneArchaeology_Count`
+   - 值类型: `String`
+   - 值内容: 玩家该类型的考古数量（整数字符串）
+
+   - 键格式: `GeneArchaeology_Type`
+   - 值类型: `String`
+   - 值内容: 考古类型标识符
+
+   - 键格式: `GeneArchaeology_PlayerUuid`
+   - 值类型: `String`
+   - 值内容: 玩家UUID字符串
+
+   - 键格式: `GeneArchaeology_TotalEntries`
+   - 值类型: `String`
+   - 值内容: 该类型的总条目数
+
+2. **考古组列表数据**
+   - 键格式: `Archaeology_TypeData_${index}_Key`
+   - 值类型: `String`
+   - 值内容: 考古组的标识符
+   - 说明: `index` 从 1 开始递增，对应组的顺序
+
+**完整数据示例：**
+
+```kotlin
+// responseData 数据结构示例
+val responseData = mapOf(
+    "GeneArchaeology_Count" to "15",
+    "GeneArchaeology_Type" to "ancient_relics",
+    "GeneArchaeology_PlayerUuid" to "12345678-1234-1234-1234-123456789abc",
+    "GeneArchaeology_TotalEntries" to "100",
+    "Archaeology_TypeData_1_Key" to "group_mystical_artifacts",
+    "Archaeology_TypeData_2_Key" to "group_ancient_weapons",
+    // ... 更多考古组数据
+)
+```
+
+**使用说明：**
+- 玩家进度数据始终包含在返回结果中
+- 考古组数据按配置中的顺序返回
+- 如果该类型没有考古组，`Archaeology_TypeData_*` 键不会出现
+
+---
+
+#### 2. `GeneArchaeology_GroupData` - 考古组详细信息发包
+
+**包处理器:** `GeneArchaeology_GroupData`
+
+**功能描述：**
+向客户端发送指定考古组的详细信息，包括组的基本信息、已解锁条目和奖励状态。
+
+**数据结构说明 (responseData):**
+
+`responseData` 是一个 `Map<String, String>` 类型的数据结构，包含考古组详细信息。
+
+数据格式说明：
+
+1. **考古组基本信息**
+   - 键格式: `Archaeology_Group_GroupKeyName`
+   - 值类型: `String`
+   - 值内容: 考古组的标识符名称
+
+   - 键格式: `Archaeology_Group_Type`
+   - 值类型: `String`
+   - 值内容: 所属的考古类型
+
+   - 键格式: `Archaeology_Group_Texture`
+   - 值类型: `String`
+   - 值内容: 组的纹理路径
+
+   - 键格式: `Archaeology_Group_LockTexture`
+   - 值类型: `String`
+   - 值内容: 锁定状态下的纹理路径
+
+   - 键格式: `Archaeology_Group_UnLockTexture`
+   - 值类型: `String`
+   - 值内容: 解锁状态下的纹理路径
+
+   - 键格式: `Archaeology_Group_GroupTexts`
+   - 值类型: `String`
+   - 值内容: 组描述文本列表，用逗号分隔（已转换颜色代码）
+
+   - 键格式: `Archaeology_Group_EntriesTotal`
+   - 值类型: `String`
+   - 值内容: 该组包含的总条目数量
+
+2. **玩家解锁状态数据**
+   - 键格式: `GeneArchaeology_RewardClaimed`
+   - 值类型: `String`
+   - 值内容: 奖励是否已领取（"true" 或 "false"）
+
+   - 键格式: `GeneArchaeology_Unlock_Count`
+   - 值类型: `String`
+   - 值内容: 已解锁的条目数量
+
+   - 键格式: `GeneArchaeology_Unlock_${index}_Key`
+   - 值类型: `String`
+   - 值内容: 已解锁的考古条目键
+   - 说明: `index` 从 0 开始递增
+
+**完整数据示例：**
+
+```kotlin
+val responseData = mapOf(
+    // 组基本信息
+    "Archaeology_Group_GroupKeyName" to "mystical_artifacts",
+    "Archaeology_Group_Type" to "ancient_relics",
+    "Archaeology_Group_Texture" to "textures/items/diamond.png",
+    "Archaeology_Group_LockTexture" to "textures/items/barrier.png",
+    "Archaeology_Group_UnLockTexture" to "textures/items/diamond.png",
+    "Archaeology_Group_GroupTexts" to "§6神秘文物,§7古老的传说",
+    "Archaeology_Group_EntriesTotal" to "25",
+
+    // 玩家解锁状态
+    "GeneArchaeology_RewardClaimed" to "false",
+    "GeneArchaeology_Unlock_Count" to "3",
+    "GeneArchaeology_Unlock_0_Key" to "ancient_scroll",
+    "GeneArchaeology_Unlock_1_Key" to "mystical_crystal",
+    "GeneArchaeology_Unlock_2_Key" to "forgotten_relic"
+)
+```
+
+---
+
+#### 3. `GeneArchaeology_EntriesData` - 分页条目数据发包
+
+**包处理器:** `GeneArchaeology_EntriesData`
+
+**功能描述：**
+向客户端发送指定考古组的分页条目数据，支持分页浏览考古条目。
+
+**数据结构说明 (entriesData):**
+
+`entriesData` 是一个 `Map<String, String>` 类型的数据结构，包含分页的考古条目信息。
+
+数据格式说明：
+
+1. **条目总数**
+   - 键格式: `Archaeology_Entry_Total`
+   - 值类型: `String`
+   - 值内容: 该组的总条目数量
+
+2. **分页条目数据**
+   - 键格式: `Archaeology_Entry_${index}_objectKey`
+   - 值类型: `String`
+   - 值内容: 条目的对象键标识符
+   - 说明: `index` 从 1 开始递增，对应当前页的条目顺序
+
+   - 键格式: `Archaeology_Entry_${index}_name`
+   - 值类型: `String`
+   - 值内容: 条目的显示名称
+
+   - 键格式: `Archaeology_Entry_${index}_texture`
+   - 值类型: `String`
+   - 值内容: 条目的纹理路径
+
+   - 键格式: `Archaeology_Entry_${index}_lockTexture`
+   - 值类型: `String`
+   - 值内容: 锁定状态下的纹理路径
+
+   - 键格式: `Archaeology_Entry_${index}_unLockTexture`
+   - 值类型: `String`
+   - 值内容: 解锁状态下的纹理路径
+
+   - 键格式: `Archaeology_Entry_${index}_texts`
+   - 值类型: `String`
+   - 值内容: 条目的描述文本列表，用逗号分隔（已转换颜色代码）
+
+**完整数据示例：**
+
+```kotlin
+val entriesData = mapOf(
+    "Archaeology_Entry_Total" to "25",
+    "Archaeology_Entry_1_objectKey" to "ancient_scroll",
+    "Archaeology_Entry_1_name" to "远古卷轴",
+    "Archaeology_Entry_1_texture" to "textures/items/paper.png",
+    "Archaeology_Entry_1_lockTexture" to "textures/items/barrier.png",
+    "Archaeology_Entry_1_unLockTexture" to "textures/items/paper.png",
+    "Archaeology_Entry_1_texts" to "§7记载着古老秘密的卷轴,§6蕴含着失落的知识",
+
+    "Archaeology_Entry_2_objectKey" to "mystical_crystal",
+    "Archaeology_Entry_2_name" to "神秘水晶",
+    "Archaeology_Entry_2_texture" to "textures/items/diamond.png",
+    "Archaeology_Entry_2_lockTexture" to "textures/items/barrier.png",
+    "Archaeology_Entry_2_unLockTexture" to "textures/items/diamond.png",
+    "Archaeology_Entry_2_texts" to "§b闪烁着神秘光芒的水晶,§7似乎拥有神奇的力量"
+    // ... 更多条目数据
+)
+```
+
+---
+
+#### 4. `GeneArchaeology_ClaimResult` - 奖励领取结果发包
+
+**包处理器:** `GeneArchaeology_ClaimResult`
+
+**功能描述：**
+向客户端发送考古组奖励领取的结果信息。
+
+**数据结构说明 (responseData):**
+
+`responseData` 是一个 `Map<String, String>` 类型的数据结构，包含领取结果信息。
+
+数据格式说明：
+
+- 键格式: `GeneArchaeology_Type`
+- 值类型: `String`
+- 值内容: 考古类型标识符
+
+- 键格式: `GeneArchaeology_GroupKey`
+- 值类型: `String`
+- 值内容: 考古组标识符
+
+- 键格式: `GeneArchaeology_PlayerUuid`
+- 值类型: `String`
+- 值内容: 玩家UUID字符串
+
+- 键格式: `GeneArchaeology_ClaimStatus`
+- 值类型: `String`
+- 值内容: 领取状态（"success" 表示成功领取，"already_claimed" 表示已领取过）
+
+**完整数据示例：**
+
+```kotlin
+val responseData = mapOf(
+    "GeneArchaeology_Type" to "ancient_relics",
+    "GeneArchaeology_GroupKey" to "mystical_artifacts",
+    "GeneArchaeology_PlayerUuid" to "12345678-1234-1234-1234-123456789abc",
+    "GeneArchaeology_ClaimStatus" to "success"
+)
+```
+
+### 界面收包处理器
+
+#### 客户端收包处理器（客户端 → 服务端）
+
+收包ID: `Gene_Archaeology`
+
+**处理器说明：**
+
+所有客户端发往服务端的交互都通过 `Gene_Archaeology` 收包ID进行处理，参数格式统一为4个参数。
+
+---
+
+#### 1. `getArchaeologyGroupsByType` - 获取考古组数据
+
+**功能描述：**
+获取指定类型的所有考古组数据，以及玩家在该类型的考古进度信息。
+
+**参数说明：**
+- `data[0]`: `"getArchaeologyGroupsByType"` (操作类型)
+- `data[1]`: `type` (String) - 考古类型标识符
+
+**返回数据包：**
+- **界面名称:** `Gene_Archaeology_View`
+- **包处理器:** `GeneArchaeology_GroupsData`
+
+**数据内容：**
+```kotlin
+val responseData = mapOf(
+    "GeneArchaeology_Count" to count.toString(),           // 玩家该类型的考古数量
+    "GeneArchaeology_Type" to type,                        // 考古类型
+    "GeneArchaeology_PlayerUuid" to player.uniqueId.toString(), // 玩家UUID
+    "GeneArchaeology_TotalEntries" to totalEntries.toString(),  // 该类型的总条目数
+    // ... 考古组数据 (由ArchaeologyCommon.getArchaeologyGroupsByType提供)
+)
+```
+
+---
+
+#### 2. `getArchaeologyGroupData` - 获取考古组详细信息
+
+**功能描述：**
+获取指定类型和组的考古组详细信息，包括已解锁的考古数据和奖励领取状态。
+
+**参数说明：**
+- `data[0]`: `"getArchaeologyGroupData"` (操作类型)
+- `data[1]`: `type` (String) - 考古类型标识符
+- `data[2]`: `groupKey` (String) - 考古组标识符
+
+**返回数据包：**
+- **界面名称:** `Gene_Archaeology_View`
+- **包处理器:** `GeneArchaeology_GroupData`
+
+**数据内容：**
+```kotlin
+val responseData = mapOf(
+    // 考古组基本数据 (由ArchaeologyCommon.getArchaeologyGroupData提供)
+    "GeneArchaeology_RewardClaimed" to isRewardClaimed.toString(),  // 奖励是否已领取
+    "GeneArchaeology_Unlock_Count" to unlockedKeys.size.toString(), // 已解锁数量
+    "GeneArchaeology_Unlock_0_Key" to key1,  // 已解锁的考古数据键
+    "GeneArchaeology_Unlock_1_Key" to key2,
+    // ... 更多已解锁的考古数据
+)
+```
+
+---
+
+#### 3. `getArchaeologyEntriesByPage` - 获取分页条目数据
+
+**功能描述：**
+获取指定类型和组的考古条目数据，支持分页浏览。
+
+**参数说明：**
+- `data[0]`: `"getArchaeologyEntriesByPage"` (操作类型)
+- `data[1]`: `type` (String) - 考古类型标识符
+- `data[2]`: `groupKey` (String) - 考古组标识符
+- `data[3]`: `page` (Int) - 页码（从0开始）
+- `data[4]`: `pageSize` (Int) - 每页条目数量（默认10）
+
+**返回数据包：**
+- **界面名称:** `Gene_Archaeology_View`
+- **包处理器:** `GeneArchaeology_EntriesData`
+
+**数据内容：**
+```kotlin
+// 条目数据由ArchaeologyCommon.getArchaeologyEntriesByPage提供
+val entriesData = mapOf(
+    // 具体数据结构根据ArchaeologyCommon实现决定
+)
+```
+
+---
+
+#### 4. `claimArchaeologyGroupReward` - 领取考古组奖励
+
+**功能描述：**
+为玩家领取指定考古组的奖励，如果未领取过则执行奖励脚本。
+
+**参数说明：**
+- `data[0]`: `"claimArchaeologyGroupReward"` (操作类型)
+- `data[1]`: `type` (String) - 考古类型标识符
+- `data[2]`: `groupKey` (String) - 考古组标识符
+
+**返回数据包：**
+- **界面名称:** `Gene_Archaeology_View`
+- **包处理器:** `GeneArchaeology_ClaimResult`
+
+**数据内容：**
+```kotlin
+val responseData = mapOf(
+    "GeneArchaeology_Type" to type,                        // 考古类型
+    "GeneArchaeology_GroupKey" to groupKey,               // 考古组标识符
+    "GeneArchaeology_PlayerUuid" to player.uniqueId.toString(), // 玩家UUID
+    "GeneArchaeology_ClaimStatus" to claimStatus          // 领取状态: "success" 或 "already_claimed"
+)
+```
+
+**执行逻辑：**
+- 如果奖励已领取，返回 `"already_claimed"`
+- 如果未领取：
+  - 在数据库中记录奖励领取状态
+  - 执行配置中的Kether奖励脚本
+  - 返回 `"success"`
+
+---
+
+### 配置结构示例
+
+```yaml
+# 考古类型条目数量配置
+TypeEntryCounts:
+  type1: 100  # 类型1的总条目数
+  type2: 50   # 类型2的总条目数
+
+# 考古组配置
+Groups:
+  type1:
+    group1:
+      unlockAwards: |  # Kether脚本，奖励领取时执行
+        give *player stone 1
+        tell *player "恭喜解锁考古奖励！"
+```
+
+## 插件工作日志
+
+| 提交时间                              | 提交内容                                                                          |
+|--------------------------------------|---------------------------------------------------------------------------------|
+| **2026-01-17 18:48:22 +0800** | 新增奖励以及角色物品触发规则 |
+| **2026-01-16 00:40:18 +0800** | [feat]修改忽略文件列表 |
+| **2026-01-16 00:32:02 +0800** | [feat]初始化提交 |
+| **2026-01-03 21:35:59 +0800** | Initial commit |
+
+---
+**插件工作日志**
+
